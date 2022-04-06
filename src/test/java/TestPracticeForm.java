@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +50,27 @@ public class TestPracticeForm {
         $("#city").click();
         $(byText("Lucknow")).click();
         $("#submit").click();
+
+        //Asserts
+        $(byText(FirstName)).shouldHave();
+        $(byText(LastName)).shouldHave();
+        $(byText(email)).shouldHave();
+        $(byText("Other")).shouldHave();
+        $(byText(PhoneNumber)).shouldHave();
+        $(byText("23 August,1983")).shouldHave();
+        $(byText("English, Arts, Computer Science")).shouldHave();
+        $(byText("Reading")).shouldHave();
+        $(byText("1.txt")).shouldHave();
+        $(byText("Street: Langley, House: 12")).shouldHave();
+        $(byText("Uttar Pradesh Lucknow")).shouldHave();
+        $("#closeLargeModal").click();
+
+
+
+
+
+
+
 
     }
 }

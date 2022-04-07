@@ -52,18 +52,14 @@ public class TestPracticeForm {
         $("#submit").click();
 
         //Asserts
-        $(byText(FirstName)).shouldHave();
-        $(byText(LastName)).shouldHave();
-        $(byText(email)).shouldHave();
-        $(byText("Other")).shouldHave();
-        $(byText(PhoneNumber)).shouldHave();
-        $(byText("23 August,1983")).shouldHave();
-        $(byText("English, Arts, Computer Science")).shouldHave();
-        $(byText("Reading")).shouldHave();
-        $(byText("1.txt")).shouldHave();
-        $(byText("Street: Langley, House: 12")).shouldHave();
-        $(byText("Uttar Pradesh Lucknow")).shouldHave();
+        $(".modal-open").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text(FirstName + " " + LastName),text(email),text("Other"),
+                text(PhoneNumber),text("23 August,1983"),text("English"),text("Arts"),text("Computer Science"),
+                text("Reading"),text("1.txt"),text("Street: Langley, House: 12"),text("Uttar Pradesh Lucknow"));
         $("#closeLargeModal").click();
+
+
+
 
 
 

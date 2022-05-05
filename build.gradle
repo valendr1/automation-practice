@@ -11,7 +11,7 @@ def allureVersion = "2.17.3",
     selenideVersion = "6.4.0",
     junitVersion = "5.8.2",
     slf4jVersion = "1.7.32",
-    fakerVerison = "1.0.2"
+    fakerVersion = "1.0.2"
 
 allure {
     report {
@@ -33,7 +33,7 @@ dependencies {
             "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
-            "com.github.javafaker:javafaker:$fakerVerison",
+            "com.github.javafaker:javafaker:$fakerVersion",
 
     )
 }

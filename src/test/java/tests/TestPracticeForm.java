@@ -44,7 +44,7 @@ public class TestPracticeForm extends TestBase {
             registrationFormPage.openPage();
         });
 
-        step("Открываем форму регистрации", () -> {
+        step("Заполняем данные", () -> {
             registrationFormPage.setFirstName(FirstName)
                     .setLastName(LastName)
                     .setEmail(email)

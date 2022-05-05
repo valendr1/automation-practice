@@ -1,26 +1,20 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
+import static io.qameta.allure.Allure.step;
 import static java.lang.String.format;
 
-public class TestPracticeForm {
+public class TestPracticeForm extends TestBase {
     Faker faker = new Faker();
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
 
-    @BeforeAll
-    static void startup() {
-        Configuration.holdBrowserOpen = true;
-        Configuration.baseUrl = "https://demoqa.com";
-        //Configuration.browserSize = "1024x768";
-    }
-
     @Test
+    @DisplayName("Заполнение формы на сайте demoqa.com")
     void FormTests() {
         String FirstName = faker.name().firstName();
         String LastName = faker.name().lastName();
@@ -33,38 +27,47 @@ public class TestPracticeForm {
         String subject_2 = "Arts";
         String subject_3 = "Computer Science";
         String file = "1.txt";
-        String current_adress = faker.address().fullAddress();
+        String current_address = faker.address().fullAddress();
         //for asserts
         String check_text = "Thanks for submitting the form";
         String FullName = format("%s %s", FirstName, LastName);
         String gender = "Male";
         String BirthDay = format("%s %s,%s", day, month, year);
-        String hobbie = "Reading";
+        String hobby = "Reading";
         String state = "Uttar Pradesh";
         String city = "Lucknow";
         String StateAndCity = format("%s %s", state, city);
 
 
         //Actions
-        registrationFormPage.openPage()
-                .setFirstName(FirstName)
-                .setLastName(LastName)
-                .setEmail(email)
-                .chooseGender()
-                .setPhoneNumber(PhoneNumber)
-                .chooseBDdate(day, month, year)
-                .setSubject(subject_1)
-                .setSubject(subject_2)
-                .setSubject(subject_3)
-                .chooseHobbie()
-                .uploadElement(file)
-                .setCurrentAdress(current_adress)
-                .setState()
-                .setCity()
-                .submitForm();
+        step("Открываем форму регистрации", () -> {
+            registrationFormPage.openPage();
+        });
+
+        step("Открываем форму регистрации", () -> {
+            registrationFormPage.setFirstName(FirstName)
+                    .setLastName(LastName)
+                    .setEmail(email)
+                    .chooseGender()
+                    .setPhoneNumber(PhoneNumber)
+                    .chooseBDdate(day, month, year)
+                    .setSubject(subject_1)
+                    .setSubject(subject_2)
+                    .setSubject(subject_3)
+                    .chooseHobbie()
+                    .uploadElement(file)
+                    .setCurrentAdress(current_address)
+                    .setState()
+                    .setCity();
+        });
+
+        step("Отправляем заполненную форму", () -> {
+            registrationFormPage.submitForm();
+        });
 
         //Asserts
-        registrationFormPage.checkForm(check_text)
+        step("Проверяем данные заполненной формы", () -> {
+            registrationFormPage.checkForm(check_text)
                 .checkName(FullName)
                 .checkEmail(email)
                 .checkGender(gender)
@@ -73,10 +76,11 @@ public class TestPracticeForm {
                 .checkSubject(subject_1)
                 .checkSubject(subject_2)
                 .checkSubject(subject_3)
-                .checkHobbie(hobbie)
+                .checkHobbie(hobby)
                 .checkUploadFile(file)
-                .checkCurrentAdress(current_adress)
+                .checkCurrentAdress(current_address)
                 .checkStateAndCIty(StateAndCity)
                 .closeForm();
+        });
     }
 }

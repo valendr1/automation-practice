@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static io.qameta.allure.Allure.step;
 import static java.lang.String.format;
 
@@ -42,6 +43,8 @@ public class TestPracticeForm extends TestBase {
         //Actions
         step("Открываем форму регистрации", () -> {
             registrationFormPage.openPage();
+            executeJavaScript("$('footer').remove()");
+            executeJavaScript("$('#fixedban').remove()");
         });
 
         step("Заполняем данные", () -> {

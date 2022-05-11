@@ -10,12 +10,10 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static io.qameta.allure.Allure.step;
 import static java.lang.String.format;
 
-
-@Tag("systemProperties")
+@Tag("mainTest")
 public class TestPracticeForm extends TestBase {
     Faker faker = new Faker();
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-
 
     @Test
     @DisplayName("Заполнение формы на сайте demoqa.com")

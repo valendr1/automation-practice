@@ -44,6 +44,8 @@ tasks.withType(JavaCompile) {
 }
 
 tasks.withType(Test) {
+    systemProperties(System.getProperties())
+
     useJUnitPlatform()
 
     testLogging {
@@ -54,8 +56,8 @@ tasks.withType(Test) {
     }
 }
 
-task systemProperties(type: Test) {
+task mainTest(type: Test) {
     useJUnitPlatform {
-        includeTags "systemProperties"
+        includeTags "mainTest"
     }
 }

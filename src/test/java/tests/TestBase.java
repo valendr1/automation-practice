@@ -20,15 +20,13 @@ public class TestBase {
     static String selenoidSign = "https://" + login + ":" + password + "@selenoid.autotests.cloud/wd/hub";
 
     @BeforeAll
-    public static void startup() {
+    static void startup() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        String browser = System.getProperty("browser", "chrome");
-        String browserSize = System.getProperty("browserSize","1920x1200");
-        Configuration.browser = browser;
-        Configuration.browserSize = browserSize;
-        System.out.println(browser);
-        System.out.println(browserSize);
+        String chooseBrowser = System.getProperty("chooseBrowser","chrome");
+        String setBrowserSize = System.getProperty("setBrowserSize", "1920x1200");
+        Configuration.browser = chooseBrowser;
+        Configuration.browserSize = setBrowserSize;
 
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.remote = selenoidSign;
@@ -37,6 +35,9 @@ public class TestBase {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
+
+        System.out.println(chooseBrowser);
+        System.out.println(setBrowserSize);
 
     }
 

@@ -56,9 +56,10 @@ tasks.withType(Test) {
             exceptionFormat "short"
         }
     }
-    task systemProperties(type: Test) {
-        useJUnitPlatform{
-            includeTags "systemProperties"
-        }
+}
+
+task systemProperties(type: Test) {
+    useJUnitPlatform {
+        includeTags "systemProperties"
     }
 }

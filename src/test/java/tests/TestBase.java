@@ -28,8 +28,10 @@ public class TestBase {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
-        String browser = System.getProperty("browser");
-        String browserSize = System.getProperty("browserSize");
+        String browser = System.getProperty("browser", "chrome");
+        String browserSize = System.getProperty("browserSize","1920x1200");
+        Configuration.browser = browser;
+        Configuration.browserSize = browserSize;
 
         System.out.println(browser);
         System.out.println(browserSize);

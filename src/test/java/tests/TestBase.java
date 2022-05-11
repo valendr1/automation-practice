@@ -22,8 +22,6 @@ public class TestBase {
     @BeforeAll
     public static void startup() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.remote = selenoidSign;
 
         String browser = System.getProperty("browser", "chrome");
         String browserSize = System.getProperty("browserSize","1920x1200");
@@ -31,6 +29,9 @@ public class TestBase {
         Configuration.browserSize = browserSize;
         System.out.println(browser);
         System.out.println(browserSize);
+
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.remote = selenoidSign;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
